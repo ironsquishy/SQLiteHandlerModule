@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * @author Allen Space
@@ -19,6 +20,7 @@ public class SQLDBHandlers extends SQLiteOpenHelper {
     private static final String TABLE_PRODUCTS = "entry";
     private static final String COLUMN_ID = "_id";
     private static final String COLUMN_PRODUCTNAME = "entryname";
+    private static final String TAG = "DATABASE";
 
     /**
      * @author Allen Space
@@ -46,11 +48,13 @@ public class SQLDBHandlers extends SQLiteOpenHelper {
     {
         String query = "CREATE TABLE " +
                 TABLE_PRODUCTS + "(" +
-                COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT " +
+                COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_PRODUCTNAME + " TEXT " +
                 ");";
 
         db.execSQL(query);
+
+        Log.i(TAG, "Properly executed Oncreat().");
     }
 
     /**
@@ -65,6 +69,8 @@ public class SQLDBHandlers extends SQLiteOpenHelper {
     {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCTS);
         onCreate(db);
+
+        Log.i(TAG, "Properly executed OnUpgrade().");
     }
 
     /**
@@ -79,6 +85,8 @@ public class SQLDBHandlers extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         db.insert(TABLE_PRODUCTS, null, values);
         db.close();
+
+        Log.i(TAG, "Properly added entry to DB.");
     }
 
     /**
@@ -90,6 +98,8 @@ public class SQLDBHandlers extends SQLiteOpenHelper {
     {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("DELETE FROM " + TABLE_PRODUCTS + " WHERE " + COLUMN_PRODUCTNAME + "=\"" + entryName + "\";");
+
+        Log.i(TAG, "Properly deleted Field.");
 
     }
 
@@ -123,8 +133,13 @@ public class SQLDBHandlers extends SQLiteOpenHelper {
                 dbString += "\n";
 
             }
+            
+            c.moveToNext();
         }
         db.close();
+
+        Log.i(TAG,"Returning data, in string type");
+
         return dbString; //string return with all strings from database.
     }
 }
