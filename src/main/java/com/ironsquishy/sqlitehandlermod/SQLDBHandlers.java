@@ -88,6 +88,22 @@ public class SQLDBHandlers extends SQLiteOpenHelper {
 
         Log.i(TAG, "Properly added entry to DB.");
     }
+	
+	/**
+     * @author Allen Space
+     * @param toDelete To ensure of deleting table..
+     * Description: It will delete current table, and to ensure for safety measures
+     *              must have a true boolean past in.
+     * */
+    public void deleteTable(boolean toDelete)
+    {
+        if(toDelete) {
+            SQLiteDatabase db = getWritableDatabase();
+            onUpgrade(db, 1, 1);
+        }
+
+        Log.i("SQLHandler", "Properly deleted table, revert back to default.");
+    }
 
     /**
      * @author Allen Space
