@@ -1,5 +1,9 @@
 # SQLiteHandlerModule
 A module for android studio that can be used for handling SQLite Database.
+This module is barebones the SQLite code will only handle strings. However, feel free to change whatever is needed to
+fit the project.
+
+
 
 Installation:
 
@@ -15,3 +19,6 @@ Download Zip and extract file, then....
 8. Click "..." to find the file on your computer you  downloaded from. 
 9. Once you have found un-zipped folder simply click on it, to select and press ok.
 10. Android Studio will handle adding in your project.
+
+Credit:
+thenewboston.com 

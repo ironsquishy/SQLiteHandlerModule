@@ -102,7 +102,7 @@ public class SQLDBHandlers extends SQLiteOpenHelper {
             onUpgrade(db, 1, 1);
         }
 
-        Log.i("SQLHandler", "Properly deleted table, revert back to default.");
+        Log.i(TAG, "Properly deleted table, revert back to default.");
     }
 
     /**
